@@ -1,81 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Landing vyruzIO</title>
-    <!--fontAwesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <!--google-fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Rosario" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <!--animate css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-    <!--css-->
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiendas Online Futuristas con Shopify - ¡Lanza tu Negocio!</title>
+<!-- Enlace a la fuente Inter de Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+</style>
 </head>
-<body>
-	<!--HEADER-->
-    <header>
-        <div class ="header-content animated infinite flash delay-15s">
-            <img src ="img/logo_transparent.png" alt="pm">
-            <h3 class="title">Landing page vyruzIO</h3>
-            <p class ="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        </div>
-    </header>
-    <!--SERVICES-->
-    <section class ="services text-center">
-        <h3 class="title">Network</h3>
-        <div class="container grid-3">
-            <div>
-                <i class="fab fa-github fa-5x"></i>
-                <h3>GitHub</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem facere fugit neque, reprehenderit tempora vero!</p>
-            </div>
-            <div>
-                <i class="fab fa-linkedin-in fa-5x"></i>
-                <h3>Linkedin</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem facere fugit neque, reprehenderit tempora vero!</p>
-            </div>
-            <div>
-                <i class="fas fa-blog fa-5x"></i>
-                <h3>Web</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem facere fugit neque, reprehenderit tempora vero!</p>
-            </div>
-        </div>
-    </section>
-    <!--description-->
-    <section class="description bg-light">
-        <div class="container text-center">
-            <div class="grid-2">
-                <div>
-                    <i class="fas fa-laptop-code fa-10x"></i>
-                </div>
-                <div>
-                    <h3 class="title">Web Developer</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aperiam at corporis dignissimos ea eos, magni nesciunt sunt veritatis voluptatem.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--about me-->
-    <section class="about">
-        <div class="container text-center">
-            <div class="grid-2">
-                <div>
-                    <h3 class="title">About me</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aperiam at corporis dignissimos ea eos, magni nesciunt sunt veritatis voluptatem.</p>
-                </div>
-                <div>
-                    <i class="fas fa-user-circle fa-10x"></i>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--footer-->
-    <footer class="footer text-center bg-light">
-        <p>vyruzIO &copy; 2019 - All rights reserved</p>
-    </footer>
+<body class="antialiased">
+
+<!-- Loader Overlay -->
+<div id="loader-overlay">
+<div class="spinner"></div>
+</div>
+
+<!-- Header / Navbar -->
+<header>
+<div class="container">
+<!-- Espacio para el Logo -->
+<div class="logo comic-gradient-text">
+Tu Logo Aquí
+</div>
+<!-- Navegación (visible en desktop, oculta en móvil) -->
+<nav class="hidden-md">
+<a href="#inicio">Inicio</a>
+<a href="#servicios">Servicios</a>
+<a href="#precios">Precios</a>
+<a href="#contacto">Contacto</a>
+</nav>
+<!-- Botón CTA en Header (visible en desktop, oculta en móvil) -->
+<a href="#contacto" class="btn-primary btn-header">¡Lanza tu Tienda!</a>
+<!-- Mobile Menu Button (Eliminado) -->
+</div>
+</header>
+
+<!-- Mobile Menu Overlay (Eliminado) -->
+
+<!-- Hero Section -->
+<section id="inicio" class="scroll-reveal">
+<div class="container">
+<!-- Contenido de Texto -->
+<div class="text-content">
+<h1 class="comic-gradient-text">
+¡Tu Tienda Online, <br>Directo del Futuro!
+</h1>
+<p>
+Con Shopify y nuestra experiencia, creamos tiendas que no solo venden, sino que sorprenden. 🚀 ¡Prepárate para el despegue de tu negocio! 💫
+</p>
+<div class="btn-group">
+<a href="#servicios" class="btn-primary">Explorar Servicios</a>
+<a href="#contacto" class="btn-secondary">Agenda una Consulta</a>
+</div>
+</div>
+<!-- Espacio para la Imagen Principal -->
+<div class="image-placeholder futuristic-shape">
+
+<br>
+(Ej. Nave espacial aterrizando en una tienda online 🌌)
+</div>
+</div>
+<!-- Elementos de diseño futuristas de fondo -->
+<div class="background-elements">
+<div class="animate-blob" style="background-color: var(--vibrant-blue);"></div>
+<div class="animate-blob animation-delay-2000" style="background-color: var(--sunny-yellow);"></div>
+<div class="animate-blob animation-delay-4000" style="background-color: var(--soft-blue);"></div>
+</div>
+</section>
+
+<!-- Sección de Servicios / Características -->
+<section id="servicios" class="scroll-reveal">
+<div class="container">
+<h2 class="comic-gradient-text">¿Por qué Shopify con Nosotros?</h2>
+<div class="grid-container">
+<!-- Característica 1 -->
+<div class="feature-card card-comic-border scroll-reveal">
+<div class="icon-emoji">⚡</div>
+<h3>Lanzamiento Ultrarrápido</h3>
+<p>
+Convertimos tu visión en una tienda online funcional en tiempo récord. ⏱️ ¡Menos espera, más ventas! 💰
+</p>
+</div>
+<!-- Característica 2 -->
+<div class="feature-card card-comic-border scroll-reveal">
+<div class="icon-emoji">✨</div>
+<h3>Diseño Estelar Personalizado</h3>
+<p>
+Plantillas Shopify adaptadas y personalizadas para que tu marca brille con un estilo único y futurista. ✨
+</p>
+</div>
+<!-- Característica 3 -->
+<div class="feature-card card-comic-border scroll-reveal">
+<div class="icon-emoji">🛡️</div>
+<h3>Seguridad y Escalabilidad Robusta</h3>
+<p>
+Benefíciate de la infraestructura segura y escalable de Shopify, lista para crecer contigo sin límites. 📈
+</p>
+</div>
+<!-- Característica 4 -->
+<div class="feature-card card-comic-border scroll-reveal">
+<div class="icon-emoji">💳</div>
+<h3>Pagos y Envíos Sin Fricción</h3>
+<p>
+Integramos pasarelas de pago y soluciones de envío para una experiencia de compra fluida y global. 🌍
+</p>
+</div>
+<!-- Característica 5 -->
+<div class="feature-card card-comic-border scroll-reveal">
+<div class="icon-emoji">🎯</div>
+<h3>Optimización para la Conversión</h3>
+<p>
+Diseñamos cada elemento pensando en tus clientes y en maximizar tus ventas. 🎯 ¡Cada clic cuenta!
+</p>
+</div>
+<!-- Característica 6 -->
+<div class="feature-card card-comic-border scroll-reveal">
+<div class="icon-emoji">🤝</div>
+<h3>Soporte Post-Lanzamiento</h3>
+<p>
+No te dejamos solo. Te ofrecemos soporte y asesoramiento para que tu tienda siga prosperando. 🌱
+</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Sección Cómo Funciona -->
+<section id="como-funciona" class="scroll-reveal">
+<div class="container">
+<h2 class="comic-gradient-text">Tu Viaje Hacia el Éxito Digital</h2>
+<div class="steps-wrapper">
+<!-- Paso 1 -->
+<div class="step-card scroll-reveal">
+<div class="step-number" style="background-color: var(--vibrant-blue); color: var(--light-blue-bg);">1</div>
+<h3 style="color: var(--dark-blue-text);">Descubrimiento Cósmico</h3>
+<p style="color: var(--medium-blue-text);">
+Entendemos tu visión, productos y objetivos para trazar la ruta de tu tienda. 🗺️
+</p>
+</div>
+<div class="futuristic-line hidden-md"></div> <!-- Línea conectora -->
+<!-- Paso 2 -->
+<div class="step-card scroll-reveal">
+<div class="step-number" style="background-color: var(--sunny-yellow); color: var(--dark-blue-text);">2</div>
+<h3 style="color: var(--dark-blue-text);">Construcción Estelar</h3>
+<p style="color: var(--medium-blue-text);">
+Diseñamos y desarrollamos tu tienda en Shopify, integrando funcionalidades clave. 🏗️
+</p>
+</div>
+<div class="futuristic-line hidden-md"></div> <!-- Línea conectora -->
+<!-- Paso 3 -->
+<div class="step-card scroll-reveal">
+<div class="step-number" style="background-color: var(--vibrant-blue); color: var(--light-blue-bg);">3</div>
+<h3 style="color: var(--dark-blue-text);">Lanzamiento y Despegue</h3>
+<p style="color: var(--medium-blue-text);">
+Tu tienda está lista para el público. ¡Prepara el conteo regresivo para tus primeras ventas! 🚀
+</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Sección Caso de Éxito -->
+<section id="caso-exito" class="scroll-reveal">
+<div class="container">
+<h2 class="comic-gradient-text">¡Nuestros Clientes ya Conquistan el Universo!</h2>
+<div class="case-study-card card-comic-border scroll-reveal" style="border: 2px solid var(--sunny-yellow);">
+<div class="quote-emoji" style="color: var(--sunny-yellow);">💬</div>
+<p style="color: var(--medium-blue-text);">
+"Gracias a [Tu Empresa], nuestra tienda en Shopify, Vyruz Toy Store, pasó de ser un sueño a una realidad vibrante. El diseño es increíblemente atractivo y la funcionalidad es impecable. ¡Nuestras ventas se han disparado como un cohete!"
+</p>
+<div class="client-info" style="color: var(--vibrant-blue);">
+Equipo de Vyruz Toy Store
+</div>
+<a href="https://vyruztoystore.com.mx" target="_blank" rel="noopener noreferrer" class="client-link" style="color: var(--medium-blue-text);">
+Visita vyruztoystore.com.mx ➡️
+</a>
+</div>
+</div>
+</section>
+
+<!-- Sección de Precios -->
+<section id="precios" class="scroll-reveal">
+<div class="container">
+<h2 class="comic-gradient-text">Planes para Cada Misión</h2>
+<div class="grid-container">
+<!-- Plan Básico: Misión Inicial -->
+<div class="plan-card card-comic-border scroll-reveal">
+<h3 style="color: var(--vibrant-blue);">Misión Inicial</h3>
+<p class="price">$799<span style="font-size: 1.25rem; opacity: 0.7; color: var(--medium-blue-text);">/proyecto</span></p>
+<ul>
+<li><span class="checkmark-emoji">✔️</span> Configuración Esencial de Shopify ⚙️</li>
+<li><span class="checkmark-emoji">✔️</span> Selección y Adaptación de Plantilla Estándar 🎨</li>
+<li><span class="checkmark-emoji">✔️</span> Carga de Productos (hasta 25) 📦</li>
+<li><span class="checkmark-emoji">✔️</span> Configuración de Pasarela de Pago Principal 💳</li>
+<li><span class="checkmark-emoji">✔️</span> Configuración Básica de Envíos 🚚</li>
+<li><span class="checkmark-emoji">✔️</span> Páginas Esenciales (Contacto, Políticas) 📄</li>
+<li><span class="checkmark-emoji">✔️</span> Mini-Capacitación de Backend (1 hr) 🧑‍💻</li>
+<li>❌ Soporte Post-Lanzamiento (opcional)</li>
+</ul>
+<a href="#contacto" class="btn-primary btn-full-width">¡Iniciar Misión!</a>
+</div>
+<!-- Plan Pro (Destacado): Misión Avanzada -->
+<div class="plan-card card-comic-border highlighted scroll-reveal" style="border: 4px solid var(--vibrant-blue);">
+<span class="popular-tag" style="background-color: var(--vibrant-blue); color: var(--light-blue-bg);">¡Popular! ⭐</span>
+<h3 style="color: var(--vibrant-blue);">Misión Avanzada</h3>
+<p class="price">$2,499<span style="font-size: 1.25rem; opacity: 0.7; color: var(--medium-blue-text);">/proyecto</span></p>
+<ul>
+<li><span class="checkmark-emoji">✔️</span> Todo lo de Misión Inicial</li>
+<li><span class="checkmark-emoji">✔️</span> Diseño de Plantilla Premium Personalizado ✨</li>
+<li><span class="checkmark-emoji">✔️</span> Carga de Productos (hasta 100) ♾️</li>
+<li><span class="checkmark-emoji">✔️</span> Integración de Múltiples Pasarelas de Pago 🌍</li>
+<li><span class="checkmark-emoji">✔️</span> Configuración Avanzada de Envíos ✈️</li>
+<li><span class="checkmark-emoji">✔️</span> Integración de Apps Esenciales (Reviews, Chat) 🔗</li>
+<li><span class="checkmark-emoji">✔️</span> Optimización SEO Básica (On-page) 🔍</li>
+<li><span class="checkmark-emoji">✔️</span> Capacitación Completa de Backend (2 hrs) 🎓</li>
+<li><span class="checkmark-emoji">✔️</span> Soporte Prioritario (1 mes) 📞</li>
+</ul>
+<a href="#contacto" class="btn-primary btn-full-width">¡Despegar Ahora!</a>
+</div>
+<!-- Plan Enterprise: Misión Galáctica -->
+<div class="plan-card card-comic-border scroll-reveal">
+<h3 style="color: var(--dark-blue-text);">Misión Galáctica</h3>
+<p class="price">$5,999+<span style="font-size: 1.25rem; opacity: 0.7; color: var(--medium-blue-text);">/proyecto</span></p>
+<ul>
+<li><span class="checkmark-emoji">✔️</span> Todo lo de Misión Avanzada</li>
+<li><span class="checkmark-emoji">✔️</span> Diseño Único y a Medida (Bespoke) 🚀</li>
+<li><span class="checkmark-emoji">✔️</span> Carga de Productos Ilimitada 🌌</li>
+<li><span class="checkmark-emoji">✔️</span> Desarrollo de Apps Personalizadas (si aplica) 🛠️</li>
+<li><span class="checkmark-emoji">✔️</span> Integraciones con ERP/CRM/Sistemas Externos 🔌</li>
+<li><span class="checkmark-emoji">✔️</span> Estrategia de Marketing Digital Inicial 📊</li>
+<li><span class="checkmark-emoji">✔️</span> Auditoría de Rendimiento y Seguridad 🛡️</li>
+<li><span class="checkmark-emoji">✔️</span> Soporte Dedicado (3 meses) 🧑‍🚀</li>
+<li><span class="checkmark-emoji">✔️</span> Sesiones de Estrategia Continua 🧠</li>
+</ul>
+<a href="#contacto" class="btn-primary btn-full-width">¡Conquistar el Mercado!</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Sección Call to Action Final & Contact Form -->
+<section id="contacto" class="scroll-reveal">
+<div class="container">
+<h2 class="comic-gradient-text">¿Listo para Lanzar tu Imperio Online?</h2>
+<p style="color: var(--medium-blue-text);">
+¡No esperes más! Contacta a nuestros expertos y empieza a construir la tienda online de tus sueños. 🌠
+</p>
+
+<div class="contact-form-wrapper card-comic-border scroll-reveal" style="border: 2px solid var(--sunny-yellow);">
+<form action="#" method="POST">
+<div class="form-group">
+<label for="name">Nombre Completo:</label>
+<input type="text" id="name" name="name" placeholder="Tu nombre galáctico" required>
+</div>
+<div class="form-group">
+<label for="email">Correo Electrónico:</label>
+<input type="email" id="email" name="email" placeholder="tu@email.com" required>
+<span class="error-message">Por favor, introduce un correo electrónico válido.</span>
+</div>
+<div class="form-group">
+<label for="subject">Asunto:</label>
+<input type="text" id="subject" name="subject" placeholder="Quiero una tienda futurista..." required>
+</div>
+<div class="form-group">
+<label for="message">Tu Mensaje:</label>
+<textarea id="message" name="message" rows="5" placeholder="Cuéntanos sobre tu proyecto y tus sueños de negocio... ✍️" required></textarea>
+</div>
+<button type="submit" class="submit-btn">
+¡Enviar Mensaje al Cosmos! 🚀
+</button>
+</form>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer>
+<div class="container">
+<p>&copy; 2025 Tiendas Online Futuristas. Todos los derechos reservados.</p>
+<div class="footer-links">
+<a href="#">Privacidad</a>
+<a href="#">Términos</a>
+<a href="#">Facebook</a>
+<a href="#">Instagram</a>
+</div>
+</div>
+</footer>
+
+<!-- Botón Volver Arriba -->
+<a href="#inicio" id="back-to-top">⬆️</a>
+
+<script src="js/vrz.js"></script>
 </body>
 </html>
