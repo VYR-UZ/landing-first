@@ -1,119 +1,757 @@
-body{
-    background: rgba(0,0,0,.9);
-    margin: 0;
-    color: #fff;
-    font-family: 'Rosario', sans-serif;
+/* Variables CSS para la paleta de colores (azul predominante) */
+:root {
+--light-blue-bg: #F0F8FF; /* Fondo principal (azul muy claro, casi blanco) */
+--lighter-blue-card: #E8F5FF; /* Fondo de tarjetas/secciones secundarias (azul un poco más claro) */
+--dark-blue-text: #1A374D; /* Texto principal oscuro (azul profundo) */
+--medium-blue-text: #4A6C8C; /* Texto secundario (azul medio) */
+
+--vibrant-blue: #007BFF; /* Azul vibrante para acentos principales */
+--sunny-yellow: #FFC107; /* Amarillo brillante y puro (acento secundario) */
+--soft-blue: #66B2FF; /* Azul suave para degradados */
+--darker-blue: #0056B3; /* Azul más oscuro para contraste en degradados */
+
+/* Colores de brillo/sombra adaptados a la paleta azul y amarillo */
+--shadow-subtle: rgba(0, 0, 0, 0.08); /* Sombra general sutil */
+--glow-vibrant-blue: rgba(0, 123, 255, 0.25); /* Brillo azul suave */
+--glow-sunny-yellow: rgba(255, 193, 7, 0.3); /* Brillo amarillo suave */
+
+--input-bg-light: #FFFFFF; /* Fondo de inputs blanco */
+--input-border-light: #C5D9ED; /* Borde de inputs azul claro */
+--input-focus-border: var(--vibrant-blue); /* Borde de enfoque azul */
+--input-focus-shadow: rgba(0, 123, 255, 0.2); /* Sombra de enfoque azul */
 }
-header::after{
-    content: "";
-    height: 100vh;
-    width: 100%;
-    background-image: url("../img/header_bg.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: block;
-    filter: blur(9px);
-    -webkit-filter: blur(9px);
-    transition: all 1000ms;
+
+/* Estilos Generales */
+html {
+scroll-behavior: smooth; /* Desplazamiento suave para anclas */
 }
-header:hover::after{
-    filter:blur(0px);
-    -webkit-filter: blur(0px);
+body {
+font-family: 'Inter', sans-serif;
+background-color: var(--light-blue-bg); /* Fondo azul muy claro principal */
+color: var(--dark-blue-text); /* Texto azul oscuro */
+margin: 0;
+padding: 0;
+line-height: 1.6;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+overflow-x: hidden; /* Evita el scroll horizontal */
+position: relative; /* Necesario para el pseudo-elemento de fondo */
+min-height: 100vh; /* Asegura que el body ocupe al menos el alto de la ventana */
+display: flex;
+flex-direction: column;
 }
-header:hover .header-content{
-    filter:blur(2px);
-    -webkit-filter: blur(2px);
+body::before {
+content: '';
+position: fixed; /* Fixed para que el patrón no se mueva con el scroll */
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-image: radial-gradient(circle at top left, rgba(0, 123, 255, 0.03) 0%, transparent 50%),
+radial-gradient(circle at bottom right, rgba(0, 76, 153, 0.03) 0%, transparent 50%);
+background-size: 100% 100%;
+background-attachment: fixed; /* Parallax effect */
+opacity: 1;
+z-index: -2; /* Detrás de todo */
 }
-.header-content{
-    position: absolute;
-    z-index: 1;
-    top: 10%;
-    left: 50%;
-    margin-top: 100px;
-    margin-left: -145px;
-    width: 300px;
-    height: 350px;
-    text-align: center;
-    transition: all 1000ms;
+body::after { /* Patrón de puntos */
+content: '';
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-image: radial-gradient(circle, var(--medium-blue-text) 1px, transparent 1px);
+background-size: 20px 20px;
+background-attachment: fixed; /* Parallax effect */
+opacity: 0.02; /* Muy sutil en fondo claro */
+z-index: -1;
+pointer-events: none;
 }
-img{
-    width: 200px;
-    height: 200px;
+
+/* Loader Styles */
+#loader-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: var(--light-blue-bg);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 9999;
+transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+opacity: 1;
+visibility: visible;
 }
-.title{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem;
+#loader-overlay.hidden {
+opacity: 0;
+visibility: hidden;
 }
-.text{
-    line-height: 1.7;
-    margin-top: 1rem;
+.spinner {
+width: 50px;
+height: 50px;
+border: 5px solid var(--vibrant-blue);
+border-top-color: transparent;
+border-radius: 50%;
+animation: spin 1s linear infinite;
 }
-.services{
-    padding: 2rem;
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
 }
-.text-center{
-    text-align: center;
-    margin: auto;
+
+
+.container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 1.5rem;
+width: 100%; /* Asegura que el contenedor use el ancho disponible */
+box-sizing: border-box; /* Incluye padding en el ancho */
 }
-.container{
-    max-width: 960px;
-    margin: auto;
-    overflow: hidden;
-    padding: 4rem 1rem;
+
+section {
+padding: 6rem 0;
+flex-shrink: 0; /* Evita que las secciones se encojan */
 }
-.grid-3{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 20px;
+
+/* Títulos y Texto */
+h1, h2, h3 {
+font-weight: 800;
+line-height: 1.2;
+margin-bottom: 1.5rem;
+color: var(--dark-blue-text); /* Títulos azul oscuro */
 }
-.bg-light{
-    background: #fff;
-    color: #333;
+
+h1 { font-size: clamp(2.5rem, 8vw, 3.5rem); } /* Responsive font size */
+h2 { font-size: clamp(2rem, 6vw, 2.8rem); }
+h3 { font-size: clamp(1.5rem, 4vw, 1.8rem); }
+
+@media (min-width: 768px) {
+h1 { font-size: 5.5rem; }
+h2 { font-size: 3.5rem; }
+h3 { font-size: 2.2rem; }
 }
-.grid-2{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
+
+p {
+font-size: clamp(1rem, 2.5vw, 1.15rem); /* Responsive font size */
+opacity: 0.9;
+color: var(--medium-blue-text); /* Texto secundario azul medio */
 }
-footer{
-    padding: 2.2rem;
+@media (min-width: 768px) {
+p { font-size: 1.3rem; }
 }
-footer p{
-    margin: 0;
+
+/* Clases de Botones */
+.btn-primary, .btn-secondary {
+display: inline-block;
+font-weight: bold;
+padding: 0.9rem 2.5rem;
+border-radius: 9999px;
+transition: all 0.3s ease-in-out;
+text-decoration: none;
+text-align: center;
+cursor: pointer;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+position: relative;
+overflow: hidden;
+z-index: 1;
+font-size: 1rem; /* Base font size for buttons */
 }
-/*RESPONSIVE*/
- @media(max-width: 560px){
-    header::after{
-        height: 50vh;
-    }
-     .header-content{
-         top: 5%;
-         margin-top:  5px;
-     }
-     img{
-         width: 110px;
-         height: 110px;
-     }
-     .text{
-         display: none;
-     }
-     .grid-3{
-         grid-template-columns: 1fr;
-     }
-     .grid-2{
-         grid-template-columns: 1fr;
-     }
-     .services div{
-         padding: 1rem 1rem;
-     }
- }
-/*lANDSCAPE*/
-@media (max-height: 500px) {
-    .header-content .text{
-        display: none;
-    }
-    .header-content{
-        top: 0;
-    }
+
+.btn-primary::before, .btn-secondary::before {
+content: '';
+position: absolute;
+top: 50%;
+left: 50%;
+width: 0;
+height: 0;
+background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, transparent 70%); /* Brillo blanco sobre el botón */
+border-radius: 50%;
+transform: translate(-50%, -50%);
+transition: width 0.4s ease, height 0.4s ease;
+z-index: -1;
+}
+.btn-primary:hover::before, .btn-secondary:hover::before {
+width: 200%;
+height: 200%;
+}
+.btn-primary:active, .btn-secondary:active {
+transform: scale(0.98); /* Efecto de "presionar" */
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra sutil al presionar */
+}
+
+.btn-primary {
+background: linear-gradient(45deg, var(--vibrant-blue), var(--soft-blue)); /* Degradado de azules */
+color: var(--light-blue-bg); /* Texto claro sobre el botón */
+border: none;
+box-shadow: 0 5px 15px var(--glow-vibrant-blue); /* Sombra de brillo azul */
+}
+.btn-primary:hover {
+transform: scale(1.08);
+box-shadow: 0 8px 20px var(--glow-vibrant-blue), 0 0 30px var(--glow-vibrant-blue);
+}
+
+.btn-secondary {
+background-color: transparent;
+border: 2px solid var(--sunny-yellow); /* Borde con amarillo vibrante */
+color: var(--sunny-yellow); /* Texto amarillo vibrante */
+box-shadow: 0 3px 10px var(--glow-sunny-yellow);
+}
+.btn-secondary:hover {
+background: linear-gradient(45deg, var(--sunny-yellow), var(--darker-yellow)); /* Degradado al hover */
+color: var(--dark-blue-text); /* Texto oscuro sobre el botón */
+transform: scale(1.08);
+box-shadow: 0 8px 20px var(--glow-sunny-yellow);
+}
+
+/* Clases de Estilo Específicas */
+.comic-gradient-text {
+background: linear-gradient(45deg, var(--vibrant-blue), var(--soft-blue), var(--darker-blue)); /* Degradado de azules */
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+color: transparent; /* Fallback */
+}
+/* Ajuste para títulos con amarillo */
+h1.comic-gradient-text {
+background: linear-gradient(45deg, var(--vibrant-blue), var(--sunny-yellow), var(--darker-blue));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+color: transparent;
+}
+
+
+.card-comic-border {
+position: relative;
+border-radius: 1rem;
+background-color: var(--lighter-blue-card); /* Fondo de tarjeta azul claro */
+padding: 2.5rem;
+transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+box-shadow: 0 5px 15px var(--shadow-subtle), inset 0 0 5px rgba(0, 0, 0, 0.03); /* Sombra sutil */
+border: 1px solid var(--input-border-light); /* Borde sutil */
+}
+.card-comic-border:hover {
+transform: translateY(-0.75rem);
+box-shadow: 0 10px 25px var(--shadow-subtle), 0 0 20px var(--glow-vibrant-blue), inset 0 0 10px rgba(0, 0, 0, 0.05); /* Sombra y brillo al hover */
+}
+
+.futuristic-shape {
+clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+transform: rotate(3deg);
+transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+border: 2px solid var(--vibrant-blue); /* Borde azul */
+background-color: var(--lighter-blue-card); /* Fondo azul claro */
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+font-size: 1.3rem;
+color: var(--dark-blue-text);
+box-shadow: 0 5px 15px var(--glow-vibrant-blue); /* Brillo azul */
+
+/* Efecto de portal/pantalla en el placeholder de imagen */
+background-image: linear-gradient(45deg, var(--vibrant-blue) 0%, var(--soft-blue) 100%); /* Degradado de azules */
+background-size: 200% 200%;
+animation: portal-glow 4s ease-in-out infinite alternate;
+box-shadow: inset 0 0 20px rgba(0, 123, 255, 0.3), 0 0 30px rgba(0, 123, 255, 0.15);
+}
+@keyframes portal-glow {
+0% { background-position: 0% 50%; box-shadow: inset 0 0 20px rgba(0, 123, 255, 0.3), 0 0 30px rgba(0, 123, 255, 0.15); }
+100% { background-position: 100% 50%; box-shadow: inset 0 0 25px rgba(0, 76, 153, 0.3), 0 0 40px rgba(0, 76, 153, 0.2); }
+}
+.futuristic-shape:hover {
+transform: rotate(0deg);
+box-shadow: 0 8px 20px var(--glow-vibrant-blue);
+}
+
+.futuristic-line {
+height: 3px;
+background: linear-gradient(90deg, var(--soft-blue), var(--vibrant-blue)); /* Degradado de azules */
+width: 8rem;
+}
+
+/* Animaciones de Fondo */
+@keyframes blob {
+0% { transform: translate(0px, 0px) scale(1); }
+33% { transform: translate(40px, -60px) scale(1.1); }
+66% { transform: translate(-30px, 30px) scale(0.9); }
+100% { transform: translate(0px, 0px) scale(1); }
+}
+.animate-blob {
+animation: blob 8s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.animation-delay-2000 { animation-delay: 2s; }
+.animation-delay-4000 { animation-delay: 4s; }
+
+/* Estilos Específicos de Secciones */
+
+/* Header */
+header {
+background-color: var(--light-blue-bg); /* Fondo azul muy claro */
+color: var(--dark-blue-text);
+padding: 1.2rem 0;
+box-shadow: 0 2px 10px var(--shadow-subtle);
+border-bottom: 1px solid var(--input-border-light);
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+}
+header .container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 100%;
+padding: 0 1.5rem;
+}
+header .logo {
+font-size: 2.2rem;
+color: var(--dark-blue-text);
+flex-shrink: 0; /* Evita que el logo se encoja */
+}
+header nav {
+flex-grow: 1; /* Permite que la navegación ocupe espacio */
+text-align: center;
+}
+header nav a {
+color: var(--medium-blue-text);
+font-weight: 600;
+margin: 0 1rem; /* Espacio entre enlaces */
+text-decoration: none;
+transition: color 0.2s ease;
+}
+header nav a:hover {
+color: var(--vibrant-blue);
+}
+header .btn-header {
+flex-shrink: 0;
+margin-left: 1rem; /* Espacio a la izquierda del botón */
+}
+/* Ocultar botón de menú móvil en todas las pantallas ya que no se usará */
+.mobile-menu-btn {
+display: none !important;
+}
+/* Asegurar que la nav de escritorio siempre se muestre */
+header nav.hidden-md {
+display: flex !important; /* Forzar visibilidad */
+justify-content: center; /* Centrar enlaces en desktop */
+flex-wrap: wrap; /* Permitir que los enlaces se envuelvan si hay muchos */
+}
+@media (max-width: 767px) {
+header nav.hidden-md {
+display: none !important; /* Ocultar en móvil si no hay hamburguesa */
+}
+header .btn-header {
+display: none !important; /* Ocultar en móvil si no hay hamburguesa */
+}
+header .container {
+justify-content: center; /* Centrar el logo si no hay otros elementos */
+}
+}
+
+/* Hero Section */
+#inicio {
+background-color: var(--light-blue-bg);
+padding: 8rem 0;
+text-align: center;
+}
+#inicio .text-content {
+margin-bottom: 4rem;
+}
+#inicio .btn-group {
+display: flex;
+justify-content: center;
+gap: 1.5rem;
+flex-wrap: wrap; /* Permite que los botones se envuelvan */
+}
+#inicio .image-placeholder {
+height: 25rem;
+max-width: 36rem;
+margin: 0 auto; /* Centrar la imagen */
+}
+#inicio .background-elements {
+opacity: 0.1; /* Más sutil en fondo claro */
+mix-blend-mode: normal; /* Normalizar para claridad en fondo claro */
+}
+#inicio .background-elements div {
+border-radius: 50%; /* Asegurar círculos perfectos */
+}
+
+/* Servicios / Características */
+#servicios {
+background-color: var(--lighter-blue-card); /* Fondo de sección azul claro */
+}
+#servicios .feature-card .icon-emoji { /* Nueva clase para emojis */
+font-size: 3.5rem; /* Tamaño del emoji */
+width: 5rem;
+height: 5rem;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 auto 1.5rem auto;
+background: linear-gradient(45deg, var(--light-blue-bg), var(--lighter-blue-card)); /* Fondo claro para el icono */
+box-shadow: 0 0 15px var(--glow-vibrant-blue); /* Sombra sutil */
+}
+#servicios .feature-card h3 {
+color: var(--dark-blue-text);
+}
+#servicios .feature-card p {
+color: var(--medium-blue-text);
+}
+.grid-container {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+gap: 2rem; /* Espacio entre tarjetas */
+padding: 0 1rem; /* Padding para evitar que las tarjetas toquen los bordes en móvil */
+}
+
+/* Cómo Funciona */
+#como-funciona {
+background-color: var(--light-blue-bg);
+}
+#como-funciona .step-number {
+width: 4.5rem;
+height: 4.5rem;
+font-size: 2.2rem;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0 5px 15px var(--glow-vibrant-blue); /* Sombra de brillo para números */
+}
+#como-funciona .step-number:nth-child(1) { background-color: var(--vibrant-blue); color: var(--light-blue-bg); }
+#como-funciona .step-number:nth-child(2) { background-color: var(--sunny-yellow); color: var(--dark-blue-text); } /* Amarillo para el segundo paso */
+#como-funciona .step-number:nth-child(3) { background-color: var(--vibrant-blue); color: var(--light-blue-bg); } /* Vuelve al azul para el tercer paso */
+#como-funciona .step-card h3 {
+color: var(--dark-blue-text);
+}
+#como-funciona .step-card p {
+color: var(--medium-blue-text);
+}
+.steps-wrapper {
+display: flex;
+justify-content: space-around;
+align-items: flex-start; /* Alinea los pasos en la parte superior */
+gap: 2rem;
+flex-wrap: wrap; /* Permite que los pasos se envuelvan */
+text-align: center;
+}
+.step-card {
+flex: 1; /* Permite que las tarjetas de paso crezcan */
+min-width: 280px; /* Ancho mínimo para las tarjetas de paso */
+}
+
+/* Caso de Éxito */
+#caso-exito {
+background-color: var(--lighter-blue-card);
+}
+#caso-exito .case-study-card {
+background-color: var(--light-blue-bg);
+border: 2px solid var(--sunny-yellow);
+box-shadow: 0 8px 20px var(--glow-sunny-yellow), inset 0 0 10px rgba(255, 193, 7, 0.1);
+max-width: 800px; /* Limita el ancho para mejor lectura */
+margin: 0 auto; /* Centrar la tarjeta */
+}
+#caso-exito .case-study-card .quote-emoji { /* Nueva clase para emoji de cita */
+font-size: 5rem; /* Tamaño del emoji */
+color: var(--sunny-yellow);
+margin-bottom: 1rem;
+line-height: 1; /* Ajustar línea para que el emoji no ocupe mucho espacio */
+}
+#caso-exito .case-study-card p {
+color: var(--medium-blue-text);
+}
+#caso-exito .case-study-card .client-info {
+color: var(--vibrant-blue);
+}
+#caso-exito .case-study-card .client-link {
+color: var(--medium-blue-text);
+}
+#caso-exito .case-study-card .client-link:hover {
+color: var(--vibrant-blue);
+}
+
+/* Precios */
+#precios {
+background-color: var(--light-blue-bg);
+}
+#precios .plan-card {
+background-color: var(--lighter-blue-card);
+box-shadow: 0 5px 15px var(--shadow-subtle), inset 0 0 5px rgba(0, 0, 0, 0.03);
+border: 1px solid var(--input-border-light);
+display: flex; /* Usar flexbox para el contenido de la tarjeta */
+flex-direction: column;
+justify-content: space-between; /* Empuja el botón hacia abajo */
+}
+#precios .plan-card:hover {
+transform: translateY(-0.75rem);
+box-shadow: 0 10px 25px var(--shadow-subtle), 0 0 20px var(--glow-vibrant-blue), inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+#precios .plan-card h3 {
+color: var(--dark-blue-text);
+}
+#precios .plan-card p.price {
+color: var(--vibrant-blue);
+margin-bottom: 1rem;
+}
+#precios .plan-card ul {
+color: var(--medium-blue-text);
+margin-bottom: 1.5rem;
+padding-left: 0;
+list-style: none;
+flex-grow: 1; /* Permite que la lista ocupe el espacio restante */
+}
+#precios .plan-card ul li {
+margin-bottom: 0.7rem;
+position: relative;
+padding-left: 1.8rem;
+}
+#precios .plan-card ul li .checkmark-emoji { /* Nueva clase para emoji de checkmark */
+position: absolute;
+left: 0;
+top: 0.15em; /* Ajuste vertical para el emoji */
+font-size: 1.2em; /* Tamaño del emoji */
+color: var(--vibrant-blue); /* Color del emoji */
+line-height: 1;
+}
+
+#precios .plan-card.highlighted {
+border: 4px solid var(--vibrant-blue); /* Destacar con el azul vibrante */
+box-shadow: 0 8px 20px var(--glow-vibrant-blue), inset 0 0 15px rgba(0, 123, 255, 0.15);
+}
+#precios .plan-card.highlighted .popular-tag {
+background-color: var(--vibrant-blue);
+color: var(--light-blue-bg);
+box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+#precios .plan-card.highlighted h3 {
+color: var(--vibrant-blue);
+}
+#precios .plan-card .btn-primary {
+background: linear-gradient(45deg, var(--vibrant-blue), var(--soft-blue));
+color: var(--light-blue-bg);
+}
+#precios .plan-card .btn-primary:hover {
+background: linear-gradient(45deg, var(--soft-blue), var(--vibrant-blue));
+}
+.btn-full-width {
+width: 100%;
+display: block; /* Asegura que ocupe todo el ancho disponible */
+margin-top: auto; /* Empuja el botón al final de la tarjeta */
+}
+
+
+/* Call to Action Final & Contact Form */
+#contacto {
+background-color: var(--light-blue-bg);
+}
+#contacto h2 {
+color: var(--dark-blue-text);
+}
+#contacto p {
+color: var(--medium-blue-text);
+}
+#contacto .contact-form-wrapper {
+background-color: var(--lighter-blue-card); /* Fondo de formulario azul claro */
+box-shadow: 0 8px 20px var(--glow-vibrant-blue), inset 0 0 10px rgba(0, 0, 0, 0.05);
+border: 2px solid var(--vibrant-blue);
+padding: 2.5rem;
+border-radius: 1rem;
+max-width: 600px; /* Limita el ancho del formulario */
+margin: 0 auto; /* Centrar el formulario */
+}
+
+#contacto .form-group {
+margin-bottom: 1.5rem;
+}
+#contacto .form-group label {
+display: block;
+margin-bottom: 0.6rem;
+font-weight: 600;
+color: var(--dark-blue-text);
+font-size: 1.1rem;
+}
+#contacto .form-group input,
+#contacto .form-group textarea {
+width: 100%; /* Ocupa el 100% del ancho del padre */
+padding: 0.8rem 1rem;
+border-radius: 0.6rem;
+border: 1px solid var(--input-border-light);
+background-color: var(--input-bg-light); /* Inputs blancos */
+color: var(--dark-blue-text);
+font-size: 1rem;
+transition: border-color 0.3s ease, box-shadow 0.3s ease;
+box-sizing: border-box; /* Incluye padding y borde en el ancho */
+}
+#contacto .form-group input::placeholder,
+#contacto .form-group textarea::placeholder {
+color: var(--medium-blue-text);
+opacity: 0.6;
+}
+#contacto .form-group input:focus,
+#contacto .form-group textarea:focus {
+outline: none;
+border-color: var(--input-focus-border);
+box-shadow: 0 0 0 3px var(--input-focus-shadow);
+}
+/* Validation feedback for email */
+#email:invalid:not(:focus):not(:placeholder-shown) {
+border-color: #dc3545; /* Red border for invalid email */
+box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25);
+}
+.error-message {
+color: #dc3545;
+font-size: 0.9rem;
+margin-top: 0.25rem;
+display: none; /* Hidden by default */
+}
+#email:invalid:not(:focus):not(:placeholder-shown) + .error-message {
+display: block; /* Show error message when invalid */
+}
+
+
+#contacto .submit-btn {
+width: 100%;
+padding: 1rem;
+font-size: 1.25rem;
+background: linear-gradient(45deg, var(--vibrant-blue), var(--soft-blue));
+color: var(--light-blue-bg);
+border: none;
+border-radius: 9999px;
+font-weight: bold;
+cursor: pointer;
+transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+box-shadow: 0 5px 15px var(--glow-vibrant-blue);
+}
+#contacto .submit-btn:hover {
+background: linear-gradient(45deg, var(--soft-blue), var(--vibrant-blue));
+transform: translateY(-0.125rem) scale(1.02);
+box-shadow: 0 8px 20px var(--glow-vibrant-blue), 0 0 30px var(--glow-vibrant-blue);
+}
+
+/* Footer */
+footer {
+background-color: var(--lighter-blue-card); /* Fondo del footer azul claro */
+color: var(--medium-blue-text);
+border-top: 1px solid var(--input-border-light);
+padding: 2rem 0;
+text-align: center;
+margin-top: auto; /* Empuja el footer hacia abajo si el contenido es corto */
+}
+footer .footer-links {
+margin-top: 1rem;
+display: flex;
+justify-content: center;
+gap: 1.5rem; /* Espacio entre enlaces */
+flex-wrap: wrap; /* Permite que los enlaces se envuelvan */
+}
+footer .footer-links a {
+color: var(--medium-blue-text);
+text-decoration: none;
+transition: color 0.2s ease;
+}
+footer .footer-links a:hover {
+color: var(--vibrant-blue);
+}
+
+/* Botón Volver Arriba */
+#back-to-top {
+position: fixed;
+bottom: 2rem;
+right: 2rem;
+background: linear-gradient(45deg, var(--vibrant-blue), var(--sunny-yellow));
+color: var(--dark-blue-text); /* Texto oscuro sobre el botón */
+width: 3.5rem;
+height: 3.5rem;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.8rem; /* Tamaño del emoji */
+text-decoration: none;
+box-shadow: 0 5px 15px var(--glow-vibrant-blue);
+transition: all 0.3s ease-in-out;
+opacity: 0; /* Oculto por defecto */
+visibility: hidden;
+z-index: 1000;
+cursor: pointer;
+}
+#back-to-top.show {
+opacity: 1;
+visibility: visible;
+transform: translateY(0);
+}
+#back-to-top:hover {
+transform: translateY(-0.25rem) scale(1.1);
+box-shadow: 0 8px 20px var(--glow-vibrant-blue), 0 0 30px var(--glow-vibrant-blue);
+}
+#back-to-top:active {
+transform: scale(0.95);
+}
+
+/* Scroll Reveal Animations */
+.scroll-reveal {
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+will-change: opacity, transform; /* Performance optimization */
+}
+.scroll-reveal.scroll-reveal-visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+section {
+padding: 4rem 0; /* Menos padding en secciones para móvil */
+}
+.container {
+padding: 0 1rem; /* Menos padding en contenedores para móvil */
+}
+h1 { font-size: clamp(2rem, 7vw, 2.8rem); } /* Ajuste de tamaño de fuente para h1 en móvil */
+h2 { font-size: clamp(1.8rem, 6vw, 2.2rem); }
+h3 { font-size: clamp(1.4rem, 5vw, 1.6rem); }
+p { font-size: clamp(0.9rem, 2.2vw, 1rem); }
+
+.btn-primary, .btn-secondary, .submit-btn {
+padding: 0.7rem 1.5rem;
+font-size: 0.9rem;
+}
+#inicio .btn-group {
+flex-direction: column; /* Apila los botones en móvil */
+gap: 1rem;
+}
+#inicio .image-placeholder {
+height: 12rem; /* Menos altura para la imagen en móvil */
+max-width: 90%;
+}
+.grid-container {
+grid-template-columns: 1fr; /* Una columna para las tarjetas */
+padding: 0; /* Elimina padding extra en grid para móvil */
+}
+.steps-wrapper {
+flex-direction: column; /* Apila los pasos en móvil */
+gap: 1.5rem;
+}
+.futuristic-line {
+display: none; /* Ocultar líneas conectoras en pantallas pequeñas */
+}
+/* Asegurar que el header se centre en móvil sin nav ni botón */
+header .container {
+justify-content: center;
+}
+
+#back-to-top {
+bottom: 1rem;
+right: 1rem;
+width: 2.8rem;
+height: 2.8rem;
+font-size: 1.3rem;
+}
 }
